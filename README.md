@@ -66,4 +66,4 @@ Copy the generated app.war to Tomcat Directory/webapps/
     	mvn tomcat7:deploy 
 
 # Authors
- + **Sallak Imane** 
+ + [**Sallak Imane**](https://github.com/SallakImane) 
