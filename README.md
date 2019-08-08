@@ -30,9 +30,40 @@ Example project of how to use maven to deploy jar file.
 
 		mvn package
 
-### Step 3 : Deploy
+### Step 3 : Deploy manualy
 
 Copy the generated app.war to Tomcat Directory/webapps/
+
+### Step 3 : Deploy using maven plugin
+
+1. Add an user with roles `manager-gui` and `manager-script` in path  `%TOMCAT7_PATH%/conf/tomcat-users.xml`
+
+        <user username="tomcat" password="123456" roles="manager-gui,manager-script"/>
+
+2. Add above Tomcat’s user in the Maven setting file, later Maven will use this user to login Tomcat server ,in path `%MAVEN_PATH%/conf/settings.xml`.
+
+		 <server>
+		    <id>tomcat</id>
+		      <username>tomcat</username>
+		     <password>123456</password>
+	     </server>	   
+
+3. Declare a Maven Tomcat plugin.
+
+		<plugin>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat7-maven-plugin</artifactId>
+			<version>2.2</version>
+			<configuration>
+				<url>http://localhost:8080/manager/text</url>
+				<server>TomcatServer</server>
+				<path>/mkyongWebApp</path>
+			</configuration>
+	    </plugin>
+
+4. Commands to manipulate WAR file on Tomcat.
+   
+    	mvn tomcat7:deploy 
 
 # Authors
  + **Sallak Imane** 

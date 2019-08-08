@@ -12,9 +12,10 @@ public class App  extends HttpServlet {
 	 public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
 	     String employeeJsonString = "{ name: 'Imane Sallak', role: 'Developpeur' }";
 	     PrintWriter out = response.getWriter();
-		 response.setCharacterEncoding("UTF-8");
-	     out.print(employeeJsonString);
-	     out.flush();
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+	    out.print(employeeJsonString);
+	    out.flush();
 	  
     }
 }
